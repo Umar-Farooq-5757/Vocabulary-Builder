@@ -1,0 +1,31 @@
+import React from "react";
+import SearchBar from "../components/SearchBar";
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
+
+const Home = () => {
+  const [isDark] = useContext(ThemeContext);
+  return (
+    <main
+      className={`h-[calc(100vh-(61.5px+48px))] flex flex-col gap-8 sm:gap-10 pt-48 items-center ${
+        isDark ? "bg-slate-700 text-white" : ""
+      }`}
+    >
+      <h1 className="font-bold text-[21px] sm:text-3xl md:text-4xl">
+        Unlock the Meaning of Words!
+      </h1>
+      <SearchBar />
+      <p
+        className={`text-center text-[12px] sm:text-[16px] mx-4 y${
+          isDark ? "text-white" : "text-slate-600"
+        }`}
+      >
+        Instantly find clear definitions for any word you're curious about, and
+        even {window.innerWidth > 646 ? <br /> : ""} hear exactly how it's
+        pronounced!
+      </p>
+    </main>
+  );
+};
+
+export default Home;

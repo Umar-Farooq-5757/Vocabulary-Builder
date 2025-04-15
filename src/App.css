@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+*{
+  transition: background-color .15s linear;
+}
+
+/* From Uiverse.io by adamgiebl */ 
+.dots-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    color: #8fa2ff;
+  }
+  
+  .dot {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: #4d6aff;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  .dot:last-child {
+    margin-right: 0;
+  }
+  
+  .dot:nth-child(1) {
+    animation-delay: -0.3s;
+  }
+  
+  .dot:nth-child(2) {
+    animation-delay: -0.1s;
+  }
+  
+  .dot:nth-child(3) {
+    animation-delay: 0.1s;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.8);
+      background-color: #4d6aff;
+      box-shadow: 0 0 0 0 #4d6aff;
+    }
+  
+    50% {
+      transform: scale(1.2);
+      background-color: #4d6aff;
+      box-shadow: 0 0 0 10px rgba(178, 212, 252, 0);
+    }
+  
+    100% {
+      transform: scale(0.8);
+      background-color: #4d6aff;
+      box-shadow: 0 0 0 0 #4d6aff;
+    }
+  }
+  
+
+  /* FOR PRONOUNCIATION BUTTON */
+  .wave-shadow {
+    position: relative; /* Needed for absolute positioning of pseudo-elements */
+    box-shadow: 0 0 5px rgba(77, 106, 255, 0.3); /* Initial subtle shadow */
+  }
+
+  .wave-shadow:active {
+    animation: wave-effect 1s infinite; /* Start the animation on active state */
+  }
+
+  @keyframes wave-effect {
+    0% {
+      box-shadow: 0 0 5px gray; /* Start with subtle shadow */
+    }
+    50% {
+      box-shadow: 0 0 20px gray; /* Expand and intensify shadow */
+    }
+    100% {
+      box-shadow: 0 0 5px gray; /* Return to original shadow */
+    }
+  }
