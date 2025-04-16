@@ -1,10 +1,9 @@
 import React from "react";
 import SearchBar from "../components/SearchBar";
-import { useContext } from "react";
-import { ThemeContext } from "../contexts/ThemeContext";
+import { useTheme } from "../hooks/useTheme";
 
 const Home = () => {
-  const [isDark] = useContext(ThemeContext);
+  const [isDark] = useTheme();
   return (
     <main
       className={`h-[calc(100vh-(61.5px+48px))] flex flex-col gap-8 sm:gap-10 pt-48 items-center ${

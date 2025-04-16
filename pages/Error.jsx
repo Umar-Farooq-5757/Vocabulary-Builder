@@ -1,9 +1,8 @@
 import React from "react";
-import { ThemeContext } from "../contexts/ThemeContext";
-import { useContext } from "react";
+import { useTheme } from "../hooks/useTheme";
 
 const Error = () => {
-  const [isDark] = useContext(ThemeContext);
+  const [isDark] = useTheme();
   return (
     <div
       className={`${

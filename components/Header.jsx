@@ -1,11 +1,10 @@
 import React from "react";
 import { SunIcon } from "@heroicons/react/24/outline";
 import { MoonIcon } from "@heroicons/react/24/outline";
-import { ThemeContext } from "../contexts/ThemeContext";
-import { useContext } from "react";
+import { useTheme } from "../hooks/useTheme";
 
 const Header = () => {
-  const [isDark, setisDark] = useContext(ThemeContext);
+  const [isDark, setisDark] = useTheme();
   return (
     <header
       className={`shadow-md py-1 px-2 sm:px-6 sticky top-0 z-1 ${

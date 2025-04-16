@@ -2,12 +2,11 @@ import React from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useContext } from "react";
-import { ThemeContext } from "../contexts/ThemeContext";
+import { useTheme } from "../hooks/useTheme";
 
 const SearchBar = () => {
   const [inputValue, setInputValue] = useState("");
-  const [isDark] = useContext(ThemeContext);
+  const [isDark] = useTheme();
   const navigate = useNavigate();
 
   function handleInputChange(e) {

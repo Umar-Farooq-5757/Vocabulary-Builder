@@ -2,11 +2,10 @@ import React from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { CgMail } from "react-icons/cg";
-import { ThemeContext } from "../contexts/ThemeContext";
-import { useContext } from "react";
+import { useTheme } from "../hooks/useTheme";
 
 const Footer = (props) => {
-  const [isDark] = useContext(ThemeContext);
+  const [isDark] = useTheme();
 
   return (
     <footer
