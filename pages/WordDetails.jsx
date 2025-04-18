@@ -12,6 +12,8 @@ const WordDetails = () => {
   const [notFound, setNotFound] = useState(false);
   const [definitions, setDefinitions] = useState([]);
   const [examples, setExamples] = useState([]);
+  const [synonyms, setSynonyms] = useState([]);
+  const [antonyms, setAntonyms] = useState([]);
 
   useEffect(() => {
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
@@ -35,12 +37,29 @@ const WordDetails = () => {
           })
         );
 
+        // FETCHING DATA FOR SYNONYMS
+        data.meanings.map((meaning) => {
+          meaning.synonyms.map((synonym) => {
+            synonyms.push(synonym);
+          });
+        });
+
+        // FETCHING DATA FOR ANTONYMS
+        data.meanings.map((meaning) => {
+          meaning.antonyms.map((antonym) => {
+            antonyms.push(antonym);
+          });
+        });
+
         setWordData({
           word: data.word,
           phonetic: data.phonetics[0].text,
-          partsOfSpeech: data.meanings,
-          definitions: definitions,
-          examples: examples,
+          partsOfSpeech: [...new Set(data.meanings)],
+          definitions: [...new Set(definitions)],
+          examples: [...new Set(examples)],
+          synonyms: [...new Set(synonyms)],
+          antonyms: [...new Set(antonyms)],
+          // antonyms: antonyms,
         });
       })
       .catch((err) => {
@@ -71,6 +90,7 @@ const WordDetails = () => {
     );
   }
 
+
   function pronounce() {
     const synth = window.speechSynthesis;
     const utterance = new window.SpeechSynthesisUtterance(wordData.word);
@@ -81,7 +101,7 @@ const WordDetails = () => {
     <>
       {wordData ? (
         <main
-          className={`pt-6 min-h-[calc(100vh-(61.5px+48px))] ${
+          className={`py-6 min-h-[calc(100vh-(61.5px+48px))] ${
             isDark ? "bg-slate-700 text-white" : "bg-white text-black"
           }`}
         >
@@ -120,10 +140,10 @@ const WordDetails = () => {
             <div className="part-of-speech flex items-center">
               <h2 className="font-bold text-lg mr-5">Part of speech: </h2>
               <div className="flex items-center gap-4">
-                {wordData.partsOfSpeech.map((partOfSpeech) => {
+                {wordData.partsOfSpeech.map((partOfSpeech, i) => {
                   return (
                     <p
-                      key={partOfSpeech.partOfSpeech}
+                      key={i}
                       className="bg-[#4d6aff] text-white py-1 px-2 min-w-16 text-center rounded-md font-semibold"
                     >
                       {partOfSpeech.partOfSpeech}
@@ -132,25 +152,58 @@ const WordDetails = () => {
                 })}
               </div>
             </div>
-            <div className="definitions">
-              <h2 className="font-bold text-lg mr-5 mt-4">Definitions: </h2>
-              <ol className="list-decimal list-inside mt-2">
-                {wordData.definitions
-                  .map((definition) => {
-                    return <li key={definition}>{definition}</li>;
-                  })
-                  .slice(0, 4)}
-              </ol>
-            </div>
-            {/* .map((meaning)=>meaning.definitions.map((definition)=>definition.example)) */}
-            <div className="examples">
-              <h2 className="font-bold text-lg mr-5 mt-4">Examples: </h2>
-              <ol className="list-decimal list-inside mt-2 italic">
-                {wordData.examples.map((example) => {
-                  return <li key={example}>{example}</li>;
-                })}
-              </ol>
-            </div>
+            {wordData.definitions.length !== 0 ? (
+              <div className="definitions">
+                <h2 className="font-bold text-lg mr-5 mt-4">Definitions: </h2>
+                <ol className="list-decimal list-inside mt-2">
+                  {wordData.definitions
+                    .map((definition) => {
+                      return <li key={definition}>{definition}</li>;
+                    })
+                    .slice(0, 7)}
+                </ol>
+              </div>
+            ) : (
+              ""
+            )}
+            {wordData.examples.length !== 0 ? (
+              <div className="examples">
+                <h2 className="font-bold text-lg mr-5 mt-4">Examples: </h2>
+                <ol className="list-decimal list-inside mt-2 italic">
+                  {wordData.examples
+                    .map((example) => {
+                      return <li key={example}>{example}</li>;
+                    })
+                    .slice(0, 5)}
+                </ol>
+              </div>
+            ) : (
+              ""
+            )}
+            {wordData.synonyms.length != 0 ? (
+              <div className="synonyms">
+                <h2 className="font-bold text-lg mr-5 mt-4">Synonyms: </h2>
+                <div className="flex flex-wrap">
+                  {wordData.synonyms.map((synonym) => {
+                    return <span key={synonym}>{synonym}, &nbsp;</span>;
+                  })}
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
+            {wordData.antonyms.length != 0 ? (
+              <div className="synonyms">
+                <h2 className="font-bold text-lg mr-5 mt-4">Antonyms: </h2>
+                <div className="flex flex-wrap">
+                  {wordData.antonyms.map((antonym) => {
+                    return <span key={antonym}>{antonym}, &nbsp;</span>;
+                  })}
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
           </section>
         </main>
       ) : (
