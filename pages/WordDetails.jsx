@@ -101,7 +101,7 @@ const WordDetails = () => {
     <>
       {wordData ? (
         <main
-          className={`py-6 min-h-[calc(100vh-(61.5px+48px))] ${
+          className={`py-6 pb-20 min-h-[calc(100vh-(61.5px+48px))] ${
             isDark ? "bg-slate-700 text-white" : "bg-white text-black"
           }`}
         >
