@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { useTheme } from "../hooks/useTheme";
+import Recents from "../components/Recents";
+import { useOutletContext } from "react-router-dom";
 
 const Home = () => {
   const [isDark] = useTheme();
+  const [recentSearches, setRecentSearches] = useOutletContext();
+
   return (
     <main
       className={`h-[calc(100vh-(61.5px+48px))] flex flex-col gap-8 sm:gap-10 pt-48 items-center ${
         isDark ? "bg-slate-700 text-white" : ""
       }`}
     >
+      <Recents recentSearches={recentSearches} />
       <h1 className="font-bold text-[21px] sm:text-3xl md:text-4xl">
         Unlock the Meaning of Words!
       </h1>

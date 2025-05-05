@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { SpeakerWaveIcon, ArrowLeftIcon } from "@heroicons/react/16/solid";
 import { useTheme } from "../hooks/useTheme";
+import { useOutletContext } from "react-router-dom";
 
 const WordDetails = () => {
+  const [recentSearches, setRecentSearches] = useOutletContext();
   const [isDark, setisDark] = useTheme();
   const params = useParams();
   const word = params.word;
@@ -27,6 +29,13 @@ const WordDetails = () => {
             }
           });
         });
+
+        // CREATING HISTORY FOR RECENTS SECTION
+        if (recentSearches[0] != word) {
+          recentSearches.unshift(word);
+        }
+        checkArrayLength(recentSearches);
+        localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
 
         // FETCHING DATA FOR EXAMPLES
         data.meanings.map((meaning) =>
@@ -90,6 +99,11 @@ const WordDetails = () => {
     );
   }
 
+  function checkArrayLength(a) {
+    if (a.length > 10) {
+      a.pop();
+    }
+  }
 
   function pronounce() {
     const synth = window.speechSynthesis;
