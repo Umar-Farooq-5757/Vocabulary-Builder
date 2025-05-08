@@ -10,10 +10,8 @@ function App() {
     JSON.parse(localStorage.getItem("isDarkMode"))
   );
   const [recentSearches, setRecentSearches] = useState(
-    JSON.parse(localStorage.getItem("recentSearches"))
-    // []
+    JSON.parse(localStorage.getItem("recentSearches")) || []
   );
-  // const [recentSearches, setRecentSearches] = useState([])
   return (
     <ThemeContext.Provider value={[isDark, setisDark]}>
       <Header />
