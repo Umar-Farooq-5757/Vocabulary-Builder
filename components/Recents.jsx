@@ -8,7 +8,7 @@ const Recents = ({ recentSearches }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div
-      className={`fixed right-10 top-[75px] px-2 py-[3px] rounded-sm ${
+      className={`fixed right-2 sm:right-10 top-[75px] px-2 py-[2px] rounded-sm ${
         isDark
           ? "bg-slate-800 hover:bg-slate-600"
           : "bg-slate-200 hover:bg-slate-300"
@@ -24,7 +24,7 @@ const Recents = ({ recentSearches }) => {
         }}
         className="flex items-center justify-center gap-2 cursor-pointer"
       >
-        <FaHistory />
+        <FaHistory/>
         Recents
       </button>
       <Modal

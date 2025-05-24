@@ -28,6 +28,12 @@ const Home = () => {
         even {window.innerWidth > 646 ? <br /> : ""} hear exactly how it's
         pronounced!
       </p>
+      <div className="definitelyyes text-sm fixed bottom-16 left-2 sm:left-5">
+        <p>You will definitely like this</p>
+        <a className="text-blue-600 hover:underline" href={"https://definitelyyes.netlify.app"} target="_blank">
+          click here
+        </a>
+      </div>
     </main>
   );
 };
