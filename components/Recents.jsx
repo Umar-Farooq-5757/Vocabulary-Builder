@@ -22,7 +22,7 @@ const Recents = ({ recentSearches }) => {
             alert("Search words to create history");
           }
         }}
-        className="flex items-center justify-center gap-2 cursor-pointer"
+        className="flex select-none items-center justify-center gap-2 cursor-pointer"
       >
         <FaHistory/>
         Recents

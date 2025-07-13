@@ -30,7 +30,7 @@ const Home = () => {
       </p>
       <div className="definitelyyes text-sm fixed bottom-16 left-2 sm:left-5">
         <p>You will definitely like this</p>
-        <a className="text-blue-600 hover:underline" href={"https://definitelyyes.netlify.app"} target="_blank">
+        <a className="text-blue-500 hover:underline" href={"https://definitelyyes.netlify.app"} target="_blank">
           click here
         </a>
       </div>

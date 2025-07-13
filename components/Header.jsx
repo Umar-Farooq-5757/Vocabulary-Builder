@@ -7,7 +7,7 @@ const Header = () => {
   const [isDark, setisDark] = useTheme();
   return (
     <header
-      className={`shadow-md py-1 px-2 sm:px-6 sticky top-0 z-1 ${
+      className={`shadow-md py-1 px-2 sm:px-6 sticky top-0 select-none z-1 ${
         isDark ? "bg-slate-800 text-white" : "bg-white text-black"
       }`}
     >
